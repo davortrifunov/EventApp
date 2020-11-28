@@ -1,4 +1,5 @@
 import 'package:EventApp/Database/models/user.dart';
+import 'package:EventApp/Presentation/detail_screen.dart';
 import 'package:EventApp/Presentation/wrapper.dart';
 import 'package:EventApp/services/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       value: AuthSerivce().user,
       child: MaterialApp(
         home: Wrapper(),
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.blueGrey[600],
+        ),
       ),
     );
   }

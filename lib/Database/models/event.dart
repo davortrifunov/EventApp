@@ -1,12 +1,10 @@
-import 'package:EventApp/Database/models/user.dart';
-
 class Event {
   final String eventID;
   final String time;
   final String date;
   final String location;
   final String sender;
-  final List<UserModel> going;
+  final List<String> going;
 
   // Event(String eventID, String time, String date, String location,
   //     String sender, List<UserModel> going) {

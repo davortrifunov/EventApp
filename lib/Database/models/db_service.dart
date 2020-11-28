@@ -19,21 +19,26 @@ class DatabaseService {
     });
   }
 
-  Stream<QuerySnapshot> get eventce {
-    return collection.snapshots();
+  Future deleteEvent(Event e) async {
+    return await collection.doc(uid).delete();
   }
 
   Stream<List<Event>> get events => collection.snapshots().map(_getEvents);
+
   List<Event> _getEvents(QuerySnapshot snapshot) {
-    return snapshot.docs.map((e) {
-      return Event(
-        eventID: e.id,
-        time: e.data()["time"] ?? "",
-        date: e.data()["date"] ?? "",
-        location: e.data()["location"] ?? "",
-        sender: e.data()["sender"] ?? "",
-        going: e.data()["going"] ?? "",
-      );
-    }).toList();
+    try {
+      return snapshot.docs.map((e) {
+        return Event(
+          eventID: e.id,
+          time: e.data()["time"] ?? "",
+          date: e.data()["date"] ?? "",
+          location: e.data()["location"] ?? "",
+          sender: e.data()["sender"] ?? "",
+          going: List.from(e.data()["going"]) ?? "",
+        );
+      }).toList();
+    } catch (e) {
+      print(e);
+    }
   }
 }
